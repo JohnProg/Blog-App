@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
 const PostItem = ({item}) => {
   return (
-    <View style={styles.row}>
-      <Image source={{uri: item.imageUrl, height: 150}} style={styles.image}/>
+    <TouchableOpacity style={styles.row}
+                      activeOpacity={0.6}
+                      onPress={ ()=> alert(item.title) }>
+      <Image source={{uri: item.imageUrl, height: 150}}
+             style={styles.image}/>
+
       <Text style={styles.title}>
         { item.title }
       </Text>
+
       <Text style={styles.description}>
         { item.description.length < 85 ? item.description : `${item.description.slice(0, 85)}...`}
       </Text>
+
       <View style={styles.referenceContainer}>
         <View style={styles.countsContainer}>
           <View>
@@ -27,7 +33,8 @@ const PostItem = ({item}) => {
           <Text style={styles.speakerText}>By { item.speaker }</Text>
         </View>
       </View>
-    </View>
+      
+    </TouchableOpacity>
   )
  }
 
