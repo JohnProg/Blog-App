@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 import { ActivityIndicator, ListView, StyleSheet, Text, TextInput, View } from 'react-native';
 
+// External Libraries
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 // Components
 import NavBar from './components/NavBar';
 import PostList from './components/PostList';
@@ -12,7 +15,6 @@ import Api from './utils/Api'
 export default class AppContainer extends Component {
   constructor(props) {
     super(props);
-
     const dataSource = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
     });
@@ -60,8 +62,8 @@ export default class AppContainer extends Component {
 
         <NavBar
           title="Inicio"
-          leftText = "1"
-          rightText = "2"
+          leftText = {<Icon name="menu" size={20} />}
+          rightText = {<Icon name="search" size={20} />}
           onLeftPress={ () => {
 
           }}
