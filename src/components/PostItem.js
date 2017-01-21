@@ -17,7 +17,7 @@ const PostItem = ({item}) => {
       </Text>
 
       <Text style={styles.description}>
-        { item.description.length < 85 ? item.description : `${item.description.slice(0, 85)}...`}
+        { item.body.length < 80 ? item.body : `${item.body.slice(0, 80)}...`}
       </Text>
 
       <View style={styles.referenceContainer}>
@@ -33,7 +33,7 @@ const PostItem = ({item}) => {
           <Text style={styles.speakerText}>By { item.speaker }</Text>
         </View>
       </View>
-      
+
     </TouchableOpacity>
   )
  }
