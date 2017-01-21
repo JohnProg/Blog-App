@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
   navBarContainer: {
     position: 'absolute',
     top: 0,
-    width: width,
+    left: 0,
+    right: 0,
     backgroundColor: '#fff',
     shadowColor: '#e3e3e3',
     shadowOpacity: 0.9
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const navBar = ({leftText, onLeftPress, onRightPress, rightText, title, colorText, containerStyle}) =>
+const NavBar = ({leftText, onLeftPress, onRightPress, rightText, title, colorText, containerStyle}) =>
   <View style={[styles.navBarContainer, containerStyle]}>
       <View style={styles.statusBar}>
         <StatusBar
@@ -84,4 +85,4 @@ const navBar = ({leftText, onLeftPress, onRightPress, rightText, title, colorTex
       </View>
   </View>
 
-export default navBar;
+export default NavBar;
