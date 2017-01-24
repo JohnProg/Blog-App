@@ -1,9 +1,7 @@
 'use strict'
 
 import React from 'react';
-import { Dimensions, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-
-const { width } = Dimensions.get('window');
+import { Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const NAV_BAR_HEIGHT_IOS = 44;
 const NAV_BAR_HEIGHT_ANDROID = 50;
@@ -60,6 +58,12 @@ const NavBar = ({leftText, onLeftPress, onRightPress, rightText, title, colorTex
       </View>
 
       <View style={styles.navBar}>
+
+          <View
+              style={styles.navBarTitleContainer}>
+              <Text style={[styles.navBarTitleText, {color: colorText}]}>{ title }</Text>
+          </View>
+
           {
             leftText ? <TouchableOpacity
                         onPress={onLeftPress}
@@ -68,11 +72,6 @@ const NavBar = ({leftText, onLeftPress, onRightPress, rightText, title, colorTex
                         </TouchableOpacity>
                     : null
           }
-
-          <View
-              style={styles.navBarTitleContainer}>
-              <Text style={[styles.navBarTitleText, {color: colorText}]}>{ title || 'Blog App' }</Text>
-          </View>
 
           {
             rightText ? <TouchableOpacity

@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 
-import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-// External Libraries
-import Icon from 'react-native-vector-icons/MaterialIcons';
+// Components
+import Counts from './Counts';
 
-const { width } = Dimensions.get('window');
+// Pages
+import NewsDetailPage from './../pages/NewsDetailPage';
 
-const PostItem = ({item}) => {
+const PostItem = ({item, navigator}) => {
   return (
     <TouchableOpacity style={styles.row}
                       activeOpacity={0.6}
-                      onPress={ ()=> alert(item.title) }>
+                      onPress={ () => navigator.push({component: NewsDetailPage, passProps: {item: item}}) }>
       <Image source={{uri: item.imageUrl, height: 150}}
              style={styles.image}/>
 
@@ -24,26 +25,11 @@ const PostItem = ({item}) => {
       </Text>
 
       <View style={styles.referenceContainer}>
-        <View style={styles.countsContainer}>
-          <View style={styles.horizontal}>
-            <View style={styles.iconCountContainer}>
-              <Icon name="comment" size={14} />
-            </View>
-            <Text style={styles.countText}>{ item.comments }</Text>
-          </View>
-          <TouchableOpacity style={styles.horizontal}
-                            onPress={ ()=> alert('I like it!') }>
-            <View style={styles.iconCountContainer}>
-              <Icon name={ item.liked ? 'favorite-border' : 'favorite' } size={14} />
-            </View>
-            <Text style={styles.countText}>{ item.likes }</Text>
-          </TouchableOpacity>
-        </View>
+        <Counts item={item} />
         <View style={styles.speakerContainer}>
           <Text style={styles.speakerText}>By { item.speaker }</Text>
         </View>
       </View>
-
     </TouchableOpacity>
   )
  }
@@ -84,11 +70,6 @@ const PostItem = ({item}) => {
      borderTopWidth: 1,
      padding: 15
    },
-   countsContainer: {
-     flex: 0.4,
-     flexDirection: 'row',
-     justifyContent: 'space-between',
-   },
    speakerContainer: {
      flex: 0.6,
      alignItems: 'flex-end',
@@ -96,21 +77,6 @@ const PostItem = ({item}) => {
    speakerText : {
      fontStyle: 'italic',
      color: '#aaa',
-     marginTop: 5
-   },
-   horizontal: {
-     flexDirection: 'row',
-   },
-   iconCountContainer: {
-     marginRight: 5,
-     borderRadius: 15,
-     height: 30,
-     width: 30,
-     padding: 6.2,
-     borderColor: '#d6d6d6',
-     borderWidth: 2,
-   },
-   countText: {
      marginTop: 5
    }
  });
