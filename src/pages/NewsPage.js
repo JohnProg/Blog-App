@@ -6,7 +6,7 @@ import { ActivityIndicator, ListView, StyleSheet, Text, View } from 'react-nativ
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // Components
-import NavBar from './../components/NavBar';
+import NavBar from './../components/navBar';
 import PostList from './../components/PostList';
 
 // Utils

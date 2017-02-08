@@ -6,7 +6,7 @@ import { BackAndroid, Dimensions, Image, ScrollView, StyleSheet, Text, View } fr
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // Components
-import NavBar from './../components/NavBar';
+import NavBar from './../components/navBar';
 import Counts from './../components/Counts';
 
 var {width, height} = Dimensions.get('window')
