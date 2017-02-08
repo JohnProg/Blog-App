@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { ListView, StyleSheet, Text, TextInput, View } from 'react-native';
 
 // Components
-import NavBar from './components/NavBar';
+import NavBar from './components/navBar';
 import PostList from './components/PostList';
 
 export default class AppContainer extends Component {
