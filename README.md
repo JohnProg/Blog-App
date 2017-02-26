@@ -12,6 +12,6 @@ It shares the same codebase for iOS and Android.
 
 ## Screenshots
 
-  ![Home Page Android](/screenshots/Screen Shot 2017-02-26 at 1.05.28 PM.png =250x250)
+  ![Home Page Android](https://github.com/JohnProg/Blog-App/blob/master/screenshots/Screen%20Shot%202017-02-26%20at%201.05.28%20PM.png | width=400)
 
-  ![Home Page IOS](/screenshots/Screen Shot 2017-02-26 at 1.08.54 PM.png | width=300)
+  ![Home Page IOS](https://github.com/JohnProg/Blog-App/blob/master/screenshots/Screen%20Shot%202017-02-26%20at%201.08.54%20PM.png | width=300)
