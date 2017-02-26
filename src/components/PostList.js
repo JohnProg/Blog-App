@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { ListView, StyleSheet } from 'react-native';
 
@@ -13,9 +13,10 @@ const PostList = ({items, navigator}) => {
 
    return (
      <ListView dataSource={ items }
-       style={styles.listView}
-       removeClippedSubviews={false}
-       renderRow={this.renderRow} />
+        style={styles.listView}
+        removeClippedSubviews={false}
+        renderRow={this.renderRow}
+        automaticallyAdjustContentInsets={false} />
    )
  }
 

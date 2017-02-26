@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import { Navigator } from 'react-native';
 
 // Pages
-import NewsPage from './pages/NewsPage';
+import InitPage from './pages/InitPage';
 
 const AppContainer = () =>
     <Navigator
-      initialRoute={{ component: NewsPage }}
+      initialRoute={{ component: InitPage }}
       configureScene={ () => Navigator.SceneConfigs.PushFromRight }
       renderScene={ (route, navigator) => {
         let Component = route.component;

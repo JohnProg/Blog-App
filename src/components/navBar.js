@@ -1,6 +1,5 @@
-'use strict'
-
 import React from 'react';
+
 import { Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const NAV_BAR_HEIGHT_IOS = 44;

@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 
-import { ActivityIndicator, ListView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Alert, BackAndroid, ListView, Platform, StyleSheet, Text, View } from 'react-native';
 
 // External Libraries
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // Components
-import NavBar from './../components/navBar';
+import NavBar from './../components/NavBar';
 import PostList from './../components/PostList';
 
+// Pages
+import AboutUsPage from './AboutUsPage';
+
 // Utils
-import Api from './../utils/Api'
+import Api from './../utils/Api';
 
 class NewsPage extends Component {
   constructor(props) {
@@ -26,27 +30,10 @@ class NewsPage extends Component {
   }
 
   componentDidMount() {
+    BackAndroid.addEventListener('hardwareBackPress', this._handleBackBtnPress);
     this.setState({loading: true});
-
     Api.getPostList()
     .then(data => {
-      const images = [
-        "https://images.unsplash.com/photo-1441311956160-78a471e0638d?dpr=2&auto=format&fit=crop&w=500&h=500&q=80&cs=tinysrgb&crop=",
-        "https://images.unsplash.com/photo-1461632830798-3adb3034e4c8?dpr=2&auto=format&fit=crop&w=200&h=200&q=80&cs=tinysrgb&crop=",
-        "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?dpr=2&auto=format&fit=crop&w=200&h=200&q=80&cs=tinysrgb&crop=",
-        "https://images.unsplash.com/photo-1481487196290-c152efe083f5?dpr=2&auto=format&fit=crop&w=200&h=200&q=80&cs=tinysrgb&crop="
-      ];
-      let count = 0;
-
-      for (var i in data) {
-        count = count > 3 ? 0 : count;
-        data[i]['imageUrl'] = images[count];
-        data[i]['speaker'] = 'John Machahuay';
-        data[i]['comments'] = 230;
-        data[i]['likes'] = 20;
-        count++;
-      }
-
       this.setState({
         posts: this.state.posts.cloneWithRows(data),
         loading: false
@@ -54,18 +41,46 @@ class NewsPage extends Component {
     });
   }
 
+  componentWillUnmount() {
+    BackAndroid.removeEventListener('hardwareBackPress', this._handleBackBtnPress);
+  }
+
+  _handleBackBtnPress = () => {
+    if (this.props.navigator.getCurrentRoutes().length <= 1) {
+      Alert.alert(
+        'Logout',
+        'Would you like to logout?',
+        [
+          {text: 'NO', onPress: () => console.log('Cancel Pressed!')},
+          {text: 'YES', onPress: () => BackAndroid.exitApp()},
+        ]
+      )
+      return true;
+    }
+  }
+
   render() {
     const { posts, loading } = this.state;
+    _navigator = this.props.navigator;
 
     return (
       <View style={styles.container}>
 
-        { loading ? <ActivityIndicator size={'large'} /> : <PostList items={ posts } navigator={this.props.navigator}/> }
+        { loading ? <ActivityIndicator size={'large'} color={Platform.OS === 'ios' ? "#262626" : null}/> : <PostList items={ posts } navigator={this.props.navigator}/> }
 
         <NavBar
-          title="Inicio"
-          leftText={<Icon name="menu" size={20} />}
-          rightText={<Icon name="search" size={20} />}
+          title={this.props.title}
+          rightText={Platform.OS === 'ios' ? <Ionicons name="ios-information-circle" size={24} color={'#eee'} /> : <MaterialIcons name="info" size={24} color={'#eee'} />}
+          leftText={<MaterialIcons name="menu" size={24} color={Platform.OS === 'android' ? '#eee' : 'transparent'} />}
+          onRightPress={ () => {
+            this.props.navigator.push({
+              component: AboutUsPage,
+              title: 'Acerca de',
+            })
+          }}
+          onLeftPress={ () => {
+            Platform.OS === 'android' && this.props.openMenu();
+          }}
           containerStyle={{backgroundColor: '#303030'}}
           colorText='#eee' />
       </View>
