@@ -12,6 +12,6 @@ It shares the same codebase for iOS and Android.
 
 ## Screenshots
 
-  ![Home Page Android](/screenshots/Screen Shot 2017-02-26 at 1.05.28 PM.png | width=300)
+  ![Home Page Android](/screenshots/Screen Shot 2017-02-26 at 1.05.28 PM.png =250x250)
 
   ![Home Page IOS](/screenshots/Screen Shot 2017-02-26 at 1.08.54 PM.png | width=300)
